@@ -5,6 +5,8 @@ import time
 import subprocess
 import os
 from PIL import Image, ImageTk
+def startnmap():
+    os.system("git clone https://github.com/nepalese-noob/CNMAP; cd CNMAP; python3 cnmap.py")
 def domain():
     file = open(".process/saved.txt", "w")
     value = subprocess.Popen("dig -f "+wordlist.get()+" +short", stdout=subprocess.PIPE, shell=True)
@@ -128,7 +130,7 @@ Label1=Label(root,  bg="lightblue").grid(row=5, column=0, sticky="nsew")
 domaintoip=Button(root, text="Domain to IP",activebackground='#00ff00',font="Times 13 bold italic",cursor="hand2", bg="lightblue", fg="black", command=domain).grid(row=6, column=0, sticky="nsew")
 Label3=Label(root,  bg="lightblue").grid(row=7, column=0, sticky="nsew")
 
-nmap=Button(root, text="NMap", bg="lightblue",activebackground='#00ff00',font="Times 13 bold italic",cursor="hand2", fg="black").grid(row=8, column=0, sticky="nsew")
+nmap=Button(root, text="NMap", bg="lightblue",activebackground='#00ff00',font="Times 13 bold italic",cursor="hand2", fg="black", command=startnmap).grid(row=8, column=0, sticky="nsew")
 Label3=Label(root,  bg="lightblue").grid(row=9, column=0, sticky="nsew")
 
 onionscanner=Button(root, text="Onion Scanner",activebackground='#00ff00',font="Times 13 bold italic",cursor="hand2", bg="lightblue", fg="black").grid(row=10, column=0, sticky="nsew")
