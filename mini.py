@@ -5,10 +5,12 @@ import time
 import subprocess
 import os
 from PIL import Image, ImageTk
+
 def startnmap():
-    os.system("git clone https://github.com/nepalese-noob/CNMAP; cd CNMAP; python3 cnmap.py")
+	os.system("python3 cnmap.py")
+	
 def domain():
-    file = open(".process/saved.txt", "w")
+    file = open("process/ipsaved.txt", "w")
     value = subprocess.Popen("dig -f "+wordlist.get()+" +short", stdout=subprocess.PIPE, shell=True)
     (out, err) = value.communicate()
     n1=(str(out).replace("\\n", "\n")).replace("'","")
@@ -18,7 +20,7 @@ def domain():
     
     ar1=[]
     ar2=[]
-    f1 = open(".process/saved.txt", "r")
+    f1 = open("process/ipsaved.txt", "r")
     while True:
         line = f1.readline()
         if not line:
@@ -26,7 +28,7 @@ def domain():
         else:
             ar1.append(line.strip())
     f1.close()
-    f2 = open(".process/test.txt", "r")
+    f2 = open(wordlist.get(), "r")
     limit=0
     while True:
         line = f2.readline()
@@ -84,11 +86,11 @@ def browse():
 def destroy():
 	root.destroy()
 def ip():
-	text_file = open(".process/test.txt", "w")
+	text_file = open("process/ips.txt", "w")
 	text_file.write(url.get())
 	text_file.close()
-	os.system('''dig -f test.txt > result.txt; cat result.txt | tail -7 | head -1 | awk '{print $(NF)}' > done.txt''')
-	f = open(".process/done.txt", "r")
+	os.system('''dig -f process/ips.txt > process/ipresult.txt; cat process/ipresult.txt | tail -7 | head -1 | awk '{print $(NF)}' > process/ipdone.txt && rm -rf process/ips.txt process/ipresult.txt''')
+	f = open("process/ipdone.txt", "r")
 	data = f.read()
 	a= (data)
 	ipwindow=Tk()
@@ -103,13 +105,14 @@ def ip():
 	entry.insert(0, a)
 	entry.grid(row=0,column=1)
 	f.close()
+	os.system("cd process; rm -rf ipresult.txt ipdone.txt")
 	ipwindow.mainloop()
+	
 
 root=Tk()
 root.title("Mr.X")
 root.geometry("420x600+600+600")
 root.resizable(0,0)
-#intro=Label(root,text="Dark~Hackers", font=("Times 30 bold italic"), fg="black").grid()
 criedit=Label(root,text="           web Scanner          ", 
 font=("Times 30 bold italic"), fg="black").grid(row
 =1)
@@ -143,10 +146,13 @@ exit=Button(root, text="Exit", bg="lightblue", fg="red",activebackground='#00ff0
 
 labelimage = Label(root)
 labelimage.grid(row=0,column=0,sticky="ewns")
-filename = '.process/logo2.png'
+filename = 'process/logo2.png'
 img = Image.open(filename)
 resized_img = img.resize((300, 160))
 root.photoimg = ImageTk.PhotoImage(resized_img)
 labelimage.configure(image=root.photoimg)
+
+label1=Label(root, text= "---> Modified By").grid(row=15,column=0, sticky="w")
+label2=Label(root, text= "D̷a̷r̷k̷~ ̷H̷a̷c̷k̷e̷r̷s̷", font="Times 13 bold italic").grid(row=15,column=0)
 
 root.mainloop()
