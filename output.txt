@@ -1,3 +1,0 @@
-google.com -> 157.240.192.35
-facebook.com -> 142.250.195.46
-foodmandu.com -> 104.244.42.193
