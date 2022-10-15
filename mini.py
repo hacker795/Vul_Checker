@@ -10,7 +10,7 @@ def startnmap():
 	os.system("python3 cnmap.py")
 	
 def domain():
-    file = open("process/ipsaved.txt", "w")
+    file = open("ipsaved.txt", "w")
     value = subprocess.Popen("dig -f "+wordlist.get()+" +short", stdout=subprocess.PIPE, shell=True)
     (out, err) = value.communicate()
     n1=(str(out).replace("\\n", "\n")).replace("'","")
@@ -110,7 +110,7 @@ def ip():
 	entry.insert(0, a)
 	entry.grid(row=0,column=1)
 	f.close()
-	os.system("cd process; rm -rf ipresult.txt ipdone.txt")
+	os.system("rm -rf ipresult.txt ipdone.txt")
 	ipwindow.mainloop()
 	
 
