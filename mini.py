@@ -20,7 +20,7 @@ def domain():
     
     ar1=[]
     ar2=[]
-    f1 = open("process/ipsaved.txt", "r")
+    f1 = open("ipsaved.txt", "r")
     while True:
         line = f1.readline()
         if not line:
@@ -91,11 +91,11 @@ def webs():
 def destroy():
 	root.destroy()
 def ip():
-	text_file = open("process/ips.txt", "w")
+	text_file = open("ips.txt", "w")
 	text_file.write(url.get())
 	text_file.close()
-	os.system('''dig -f process/ips.txt > process/ipresult.txt; cat process/ipresult.txt | tail -7 | head -1 | awk '{print $(NF)}' > process/ipdone.txt && rm -rf process/ips.txt process/ipresult.txt''')
-	f = open("process/ipdone.txt", "r")
+	os.system('''dig -f ips.txt > ipresult.txt; cat ipresult.txt | tail -7 | head -1 | awk '{print $(NF)}' > ipdone.txt && rm -rf ips.txt ipresult.txt''')
+	f = open("ipdone.txt", "r")
 	data = f.read()
 	a= (data)
 	ipwindow=Tk()
@@ -151,7 +151,7 @@ exit=Button(root, text="Exit", bg="lightblue", fg="red",activebackground='#00ff0
 
 labelimage = Label(root)
 labelimage.grid(row=0,column=0,sticky="ewns")
-filename = 'process/logo2.png'
+filename = 'logo2.png'
 img = Image.open(filename)
 resized_img = img.resize((300, 160))
 root.photoimg = ImageTk.PhotoImage(resized_img)
